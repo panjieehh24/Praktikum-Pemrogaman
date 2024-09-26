@@ -1,40 +1,37 @@
 #include <iostream>
 #include <cmath>
-#include <cassert>  // For testing assertions
 
 using namespace std;
+int main(){ 
 
-// Function to calculate tax
-float calculateTax(float gross) {
-    return 0.20 * gross;
-}
+cout << "Payslip for Employee" << endl;
+cout << "--------------------" << endl;
 
-// Function to calculate net salary
-float calculateNetSalary(float gross, float tax, float installment, float insurance) {
-    return gross - tax - installment - insurance;
-}
+string Name = "panjiiii";
+// cout <<"Name :";
+// cin>>Name;
 
-// Test runner function
-void runTest() {
-    // Test 1: Gross = 5000, Installment = 1000, Insurance = 500
-    float gross = 5000;
-    float tax = calculateTax(gross);
-    float net = calculateNetSalary(gross, tax, 1000, 500);
-    assert(tax == 1000);  // Tax should be 20% of gross (5000 * 0.2 = 1000)
-    assert(net == 3500);  // Net should be 5000 - 1000 (tax) - 1000 (installment) - 500 (insurance)
-    
-    // Test 2: Gross = 10000, Installment = 2000, Insurance = 1000
-    gross = 10000;
-    tax = calculateTax(gross);
-    net = calculateNetSalary(gross, tax, 2000, 1000);
-    assert(tax == 2000);  // 20% of 10000 = 2000
-    assert(net == 7000);  // 10000 - 2000 - 2000 - 1000 = 7000
-    
-    cout << "All tests passed!" << endl;
-}
+float Gross = 9000000;
+// cout << "Gross Salary: " << "IDR";
+// cin >> Gross;
 
-int main() {
-    // Run the tests
-    runTest();
-    return 0;
+float Tax = (0.20)*Gross;
+// cout << fixed << "Tax: " << "IDR" << Tax << endl;
+
+float Installment = 800000;
+// cout << "Installment: " << "IDR";
+// cin >>Installment;
+
+float Insurance = 1500000;
+// cout << "Insurance: " << "IDR";
+// cin >>Insurance;
+
+float expectedNet = 4900000;
+
+float net = Gross - Tax - Installment - Insurance;
+
+if(expectedNet==net) cout<<"Success"<<'\n';
+else cout<<"Failed"<<'\n';
+
+
 }
