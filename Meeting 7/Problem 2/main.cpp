@@ -13,6 +13,6 @@ int main() {
     cout << "----------------------\n";
     cout << "Enter a positive integer: \n";
     cin >> n;
-    cout << "Factorial of " << n << " = " << factorial(n);
+    cout << "Factorial of " << n << " = " << factorial(n) << endl;
     return 0;
 }
