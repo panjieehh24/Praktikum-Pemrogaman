@@ -1,54 +1,75 @@
 #include <iostream>
+#include <string>
+
 using namespace std;
-int NISN();
-int main(){
-    int data[]{90, 55, 80, 60, 70, 65, 60};
-    int dataSize = sizeof(data) / sizeof(data[0]);
 
-    // Insertion sort for the first array (values)
-    for (int j = 1; j < dataSize; j++) {
-        int i = j - 1;
-        int temp = data[j];
-        while (i >= 0 && data[i] > temp) {
-            data[i + 1] = data[i];
-            i--;
+// Define a struct to hold each student's information
+struct student {
+    long int StudId;
+    string name;
+    int data; // This represents the score
+};
+
+// Insertion Sort function to sort by `data` (score) in descending order
+void sortByScoreDescending(student arr[], int n) {
+    for (int i = 1; i < n; ++i) {
+        student key = arr[i];
+        int j = i - 1;
+
+        // Move elements of arr[0...i-1] that are less than key.data to one position ahead
+        while (j >= 0 && arr[j].data < key.data) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
         }
-        data[i + 1] = temp;
+        arr[j + 1] = key;
     }
-
-    cout << "Sorted values array: ";
-    for (int j = 0; j < dataSize; j++) {
-        cout << data[j] << " ";
-    }
-    cout << endl;
-
-    // Call the NISN function to sort and print the second array
-    NISN();
-
-    return 0;
 }
 
-int NISN(){
-    long long data[]{9960312699, 9963959682, 9950310962, 9970272750, 9970293945, 9952382180, 9965653989};
-    int dataSize = sizeof(data) / sizeof(data[0]);
+// Insertion Sort function to sort by `StudId` in descending order
+void sortByIdDescending(student arr[], int n) {
+    for (int i = 1; i < n; ++i) {
+        student key = arr[i];
+        int j = i - 1;
 
-    // Insertion sort for the second array (NISN numbers)
-    for (int p = 1; p < dataSize; p++) {
-        int i = p - 1;
-        long long temp = data[p];
-        while (i >= 0 && data[i] > temp) {
-            data[i + 1] = data[i];
-            i--;
+        // Move elements of arr[0...i-1] that are less than key.StudId to one position ahead
+        while (j >= 0 && arr[j].StudId < key.StudId) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
         }
-        data[i + 1] = temp;
+        arr[j + 1] = key;
     }
+}
 
-    // Output sorted NISN array
-    cout << "Sorted NISN array: ";
-    for (int p = 0; p < dataSize; p++) {
-        cout << data[p] << " ";
+// Function to print the array of students
+void printArray(const student arr[], int n) {
+    for (int i = 0; i < n; ++i) {
+        cout << "ID: " << arr[i].StudId << ", Name: " << arr[i].name << ", Score: " << arr[i].data << endl;
     }
-    cout << endl;
+}
+
+int main() {
+    // Creating an array of student structs with id, name, and score
+    student arr[] = {
+        {9960312699, "Handi Ramadhan", 90},
+        {9963959682, "Rio Alfandra", 55},
+        {9950310962, "Ronaldo Valentino Uneputty", 80},
+        {9970272750, "Achmad Yaumil Fadjri R.", 60},
+        {9970293945, "Alivia Rahma Pramesti", 70},
+        {9952382180, "Ari Lutfianto", 65},
+        {9965653989, "Arief Budiman", 60}
+    };
+
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    // Sorting by score in descending order
+    cout << "Sorted by score in descending order:" << endl;
+    sortByScoreDescending(arr, n);
+    printArray(arr, n);
+
+    // Sorting by ID in descending order
+    cout << "\nSorted by ID in descending order:" << endl;
+    sortByIdDescending(arr, n);
+    printArray(arr, n);
 
     return 0;
 }
